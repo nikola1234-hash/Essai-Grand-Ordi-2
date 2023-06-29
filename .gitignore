@@ -1,0 +1,7 @@
+# Visual studio (+code) output files/dirs
+bin/
+obj/
+.vs/
+.vscode/
+*.suo
+
