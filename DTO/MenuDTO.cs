@@ -12,6 +12,7 @@ namespace Essai_Grand_Ordi_1.DTO
         public string NAME { get; set; }
         public double PRICE { get; set; }
         public int Quantity { get; set; }
+
         public MenuDTO()
         {
 

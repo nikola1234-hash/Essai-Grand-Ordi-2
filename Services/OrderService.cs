@@ -64,7 +64,7 @@ namespace Essai_Grand_Ordi_1.Services
 
 
         }
-        public void SaveOrder(List<MenuDTO> dto, int clientID)
+        public void SaveOrder(List<MenuDTO> dto, int clientID, string orderType)
         {
 
             using (IDbConnection conn = new OleDbConnection(connectionStirng))
@@ -90,7 +90,7 @@ namespace Essai_Grand_Ordi_1.Services
                                 CLIENT_ID = clientID,
                                 DATE_ORDERED = DateTime.Now.ToString(),
                                 ORDER_RECIEVED = DateTime.Now.ToString(),
-                                ORDER_TYPE = "Delivery",
+                                ORDER_TYPE = orderType,
                                 ORDER_DETAILS_ID = Convert.ToInt32(id)
                             };
                             var param = new Dictionary<string, object>()
@@ -98,7 +98,7 @@ namespace Essai_Grand_Ordi_1.Services
                                 ["CLIENT_ID"] = clientID,
                                 ["DATE_ORDERED"] = DateTime.Now.ToString(),
                                 ["ORDER_RECIEVED"] = DateTime.Now.ToString(),
-                                ["ORDER_TYPE"] = "Delivery",
+                                ["ORDER_TYPE"] = orderType,
                                 ["ORDER_DETAILS_ID"] = Convert.ToInt32(id)
                             };
                             var dynamicParam = new DynamicParameters(param);

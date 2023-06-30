@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 
 
@@ -27,6 +28,7 @@ namespace Essai_Grand_Ordi_1
             listView2.FullRowSelect = true;
             listView2.View = View.Details;
             os = new OrderService();
+            pickupRB.Checked = true;
         }
 
         private void FormToOrder_Load(object sender, EventArgs e)
@@ -134,7 +136,8 @@ namespace Essai_Grand_Ordi_1
                 {
                     try
                     {
-                        os.SaveOrder(cart, clientId);
+                        var orderType = deliveryRB.Checked ? "Delivery" : "Takeaway";
+                        os.SaveOrder(cart, clientId, orderType);
                         MessageBox.Show("Order saved");
                         this.Close();
                     }
