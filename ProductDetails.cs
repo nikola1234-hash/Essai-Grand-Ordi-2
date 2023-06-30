@@ -57,7 +57,11 @@ namespace Essai_Grand_Ordi_1
         {
             try
             {
-                _menu = new DataAccess.Entities.Menu();
+                if (!_isUpdate)
+                {
+                    _menu = new DataAccess.Entities.Menu();
+                }
+
 
                 // Validate NAME
                 if (string.IsNullOrWhiteSpace(this.textBox1.Text))

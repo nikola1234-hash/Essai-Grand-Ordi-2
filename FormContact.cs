@@ -34,7 +34,7 @@ namespace Essai_Grand_Ordi_1
 
         private void btnHome1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
 
 
         }

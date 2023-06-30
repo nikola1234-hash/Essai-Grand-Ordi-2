@@ -3,6 +3,7 @@ using Essai_Grand_Ordi_1.DTO;
 using Essai_Grand_Ordi_1.Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -40,7 +41,7 @@ namespace Essai_Grand_Ordi_1
             foreach (var item in menu)
             {
                 ListViewItem listViewItem = new ListViewItem(item.NAME);
-                listViewItem.SubItems.Add(item.PRICE.ToString("C2"));
+                listViewItem.SubItems.Add(string.Format(new CultureInfo("he-IL"), "{0:C}", item.PRICE));
                 listViewItem.SubItems.Add(item.ID.ToString());
                 listView1.Items.Add(listViewItem);
             }
@@ -54,7 +55,7 @@ namespace Essai_Grand_Ordi_1
             foreach (var item in cart)
             {
                 ListViewItem listViewItem = new ListViewItem(item.NAME);
-                listViewItem.SubItems.Add(item.PRICE.ToString("C2"));
+                listViewItem.SubItems.Add(string.Format(new CultureInfo("he-IL"), "{0:C}", item.PRICE));
                 listViewItem.SubItems.Add(item.Quantity.ToString());
                 listView2.Items.Add(listViewItem);
             }
@@ -81,11 +82,11 @@ namespace Essai_Grand_Ordi_1
                 }
                 if (cart.Count == 0)
                 {
-                    label3.Text = "Total: 0".ToString();
+                    label3.Text = string.Format(new CultureInfo("he-IL"), "{0:C}", 0.00);
                 }
                 else
                 {
-                    label3.Text = "Total: " + cart.Sum(item => item.PRICE * item.Quantity).ToString("C2");
+                    label3.Text = "Total: " + string.Format(new CultureInfo("he-IL"), "{0:C}", cart.Sum(item => item.PRICE * item.Quantity));
                 }
 
                 PopulateCartListView();
@@ -102,7 +103,7 @@ namespace Essai_Grand_Ordi_1
             {
                 ListViewItem selectedItem = listView1.SelectedItems[0];
                 string itemName = selectedItem.SubItems[0].Text;
-                double itemPrice = double.Parse(selectedItem.SubItems[1].Text.TrimStart('$'));
+                double itemPrice = double.Parse(selectedItem.SubItems[1].Text.TrimStart('₪'));
                 int itemID = int.Parse(selectedItem.SubItems[2].Text);
 
                 var existingItem = cart.Find(item => item.NAME == itemName);
@@ -115,7 +116,7 @@ namespace Essai_Grand_Ordi_1
                     MenuDTO menuItem = new MenuDTO(itemName, itemPrice, itemID);
                     cart.Add(menuItem);
                 }
-                label3.Text = "Total: " + cart.Sum(item => item.PRICE * item.Quantity).ToString("C2");
+                label3.Text = "Total: " + string.Format(new CultureInfo("he-IL"), "{0:C}", cart.Sum(item => item.PRICE * item.Quantity)); ;
                 PopulateCartListView();
             }
         }
