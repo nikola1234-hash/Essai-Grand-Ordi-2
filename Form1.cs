@@ -57,7 +57,6 @@ namespace Essai_Grand_Ordi_1
         {
             FormContact formContact = new FormContact();
             formContact.ShowDialog();
-            this.Close();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
